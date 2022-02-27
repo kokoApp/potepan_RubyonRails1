@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header class = "top">
+  <h1>Ruby on Rails スケジュール管理アプリ</h1>
+  </header>
+
+    <%= yield %>
+
+    <footer>
+    
+    <div class = "bottom">
+    <h1>現在日時:<span id="view_today"></span>&emsp;スケジュール合計:<%= User.count %></h1>
+    </div>
+
+    <script type="text/javascript">
+    document.getElementById("view_today").innerHTML = getToday();
+    function getToday() {
+	  var now = new Date();
+	  var year = now.getFullYear();
+	  var mon = now.getMonth()+1; 
+	  var day = now.getDate();
+	  var you = now.getDay();
+    var youbi = new Array("日","月","火","水","木","金","土");
+	  var s = year + "年" + mon + "月" + day + "日 (" + youbi[you] + ")";
+	  return s;
+     }
+</script>
+</footer>
+</body>
+</html>
